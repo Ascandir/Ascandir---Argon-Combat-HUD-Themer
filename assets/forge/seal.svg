@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="80" viewBox="0 0 64 80">
+  <defs>
+    <radialGradient id="wax" cx="0.38" cy="0.32" r="0.75">
+      <stop offset="0" stop-color="#e2463a"/>
+      <stop offset="0.5" stop-color="#a5141a"/>
+      <stop offset="1" stop-color="#4e070a"/>
+    </radialGradient>
+    <radialGradient id="inner" cx="0.6" cy="0.65" r="0.7">
+      <stop offset="0" stop-color="#d8302a"/>
+      <stop offset="1" stop-color="#7a0b10"/>
+    </radialGradient>
+  </defs>
+  <!-- Bänder -->
+  <path d="M24 48 L18 78 L24 72 L29 79 L31 50 Z" fill="#7a0b10" stroke="#3a0406" stroke-width="1"/>
+  <path d="M38 48 L46 77 L40 72 L35 79 L33 50 Z" fill="#8f1016" stroke="#3a0406" stroke-width="1"/>
+  <!-- Wachs-Klecks -->
+  <path d="M32 3 C39 2 42 7 48 7 C55 9 57 15 59 21 C62 28 61 34 59 40 C57 47 51 51 45 54 C39 58 33 57 27 56 C20 55 13 52 9 46 C4 40 3 33 4 26 C5 18 10 12 16 8 C21 4 26 4 32 3 Z" fill="url(#wax)" stroke="#3a0406" stroke-width="1.2"/>
+  <circle cx="32" cy="30" r="18" fill="url(#inner)" stroke="#5e080c" stroke-width="2"/>
+  <circle cx="32" cy="30" r="14.5" fill="none" stroke="#e8564a" stroke-width="0.9" opacity="0.7"/>
+  <!-- Stern -->
+  <path d="M32 17.5 L35 26 L44 26 L36.8 31.4 L39.6 40 L32 34.8 L24.4 40 L27.2 31.4 L20 26 L29 26 Z" fill="#6a0a0e" stroke="#f06a5a" stroke-width="0.8" opacity="0.95"/>
+  <ellipse cx="22" cy="13" rx="6" ry="3" fill="#ffffff" opacity="0.25" transform="rotate(-30 22 13)"/>
+</svg>

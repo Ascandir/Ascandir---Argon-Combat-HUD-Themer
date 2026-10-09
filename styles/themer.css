@@ -1,0 +1,243 @@
+/* ============================================================
+   Ascandir - Argon Combat HUD Themer · Editor
+   ============================================================ */
+
+.ascandir-themer .window-content {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* ---------- Bibliothek ---------- */
+.ascandir-themer .act-library {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.75rem;
+  overflow-y: auto;
+  border-right: 1px solid var(--color-border-light-tertiary, #0000002a);
+  background: #0000000f;
+}
+.ascandir-themer .act-library h3 { margin: 0; border: none; font-size: 1.1rem; }
+.ascandir-themer .act-library h4 { margin: 0.5rem 0 0; font-size: 0.85rem; text-transform: uppercase; opacity: 0.7; border: none; }
+.ascandir-themer .act-lib-buttons { display: grid; grid-template-columns: 1fr; gap: 0.25rem; }
+.ascandir-themer .act-lib-buttons button { justify-content: flex-start; line-height: 1.8; }
+.ascandir-themer .act-lib-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.ascandir-themer .act-lib-item {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.35rem 0.4rem; border-radius: 4px; cursor: pointer;
+  border: 1px solid transparent;
+}
+.ascandir-themer .act-lib-item:hover { background: #ffffff14; border-color: #ffffff22; }
+.ascandir-themer .act-lib-item.active { background: #ffffff22; border-color: var(--color-warm-2, #ee9b3a); }
+.ascandir-themer .act-lib-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ascandir-themer .act-lib-flag { opacity: 0.7; font-size: 0.8rem; }
+.ascandir-themer .act-lib-swatches { display: grid; grid-template-columns: repeat(2, 8px); gap: 1px; flex: none; }
+.ascandir-themer .act-lib-swatches i { width: 8px; height: 8px; border-radius: 2px; box-shadow: 0 0 0 1px #00000055; }
+.ascandir-themer .act-lib-empty { opacity: 0.6; font-style: italic; padding: 0.25rem 0.4rem; }
+.ascandir-themer .act-lib-world { margin-top: auto; font-size: 0.85rem; opacity: 0.85; }
+.ascandir-themer .act-lib-world a { display: block; margin-top: 0.2rem; text-decoration: underline; cursor: pointer; }
+
+/* ---------- Editor ---------- */
+.ascandir-themer .act-main { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+.ascandir-themer .act-head { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 0.75rem 0.4rem; }
+.ascandir-themer .act-name { flex: 1; font-size: 1.2rem; height: 2.1rem; font-weight: bold; }
+.ascandir-themer .act-dirty { color: var(--color-warm-2, #ee9b3a); font-size: 0.7rem; }
+.ascandir-themer .act-notice { margin: 0 0.75rem 0.4rem; padding: 0.35rem 0.6rem; border-radius: 4px; background: #ee9b3a22; border: 1px solid #ee9b3a66; font-size: 0.9rem; }
+.ascandir-themer .act-scroll { flex: 1; overflow-y: auto; padding: 0 0.75rem 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.ascandir-themer .act-subhead { margin: 0.4rem 0 0; border: none; font-size: 0.9rem; text-transform: uppercase; opacity: 0.75; }
+.ascandir-themer .hint { font-size: 0.85rem; opacity: 0.75; margin: 0.2rem 0 0.4rem; }
+
+.ascandir-themer .act-group { border: 1px solid #ffffff1f; border-radius: 6px; background: #0000000d; padding: 0 0.6rem; }
+.ascandir-themer .act-group[open] { padding-bottom: 0.5rem; }
+.ascandir-themer .act-group > summary { cursor: pointer; padding: 0.5rem 0; font-weight: bold; display: flex; align-items: center; gap: 0.5rem; list-style: revert; }
+.ascandir-themer .act-mini { display: inline-flex; gap: 2px; margin-left: auto; }
+.ascandir-themer .act-mini i { width: 12px; height: 12px; border-radius: 3px; box-shadow: 0 0 0 1px #00000066; }
+
+.ascandir-themer .act-field { display: grid; grid-template-columns: 180px 1fr; align-items: center; gap: 0.5rem; padding: 0.2rem 0; }
+.ascandir-themer .act-field select { width: 100%; }
+.ascandir-themer .act-field input[type="checkbox"] { justify-self: start; }
+.ascandir-themer .act-range { display: flex; align-items: center; gap: 0.5rem; }
+.ascandir-themer .act-range input { flex: 1; }
+.ascandir-themer .act-range-val { width: 3.5rem; text-align: right; font-variant-numeric: tabular-nums; }
+
+.ascandir-themer .act-color {
+  display: grid;
+  grid-template-columns: 180px 26px 36px 1fr 3rem 6.5rem;
+  align-items: center; gap: 0.4rem; padding: 0.15rem 0;
+}
+.ascandir-themer .act-color label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ascandir-themer .act-swatch {
+  width: 24px; height: 24px; border-radius: 4px; overflow: hidden; display: block;
+  background-image: conic-gradient(#999 25%, #ddd 0 50%, #999 0 75%, #ddd 0);
+  background-size: 10px 10px; box-shadow: 0 0 0 1px #00000088;
+}
+.ascandir-themer .act-swatch > span { display: block; width: 100%; height: 100%; }
+.ascandir-themer .act-color input[type="color"] { width: 36px; height: 24px; padding: 0; border: none; background: none; cursor: pointer; }
+.ascandir-themer .act-alpha-val { text-align: right; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+.ascandir-themer .act-hex { font-family: monospace; font-size: 0.85rem; }
+.ascandir-themer textarea[data-path="customCss"] { width: 100%; font-family: monospace; font-size: 0.85rem; min-height: 8rem; }
+
+.ascandir-themer .act-footer {
+  display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 0.75rem;
+  border-top: 1px solid var(--color-border-light-tertiary, #0000002a);
+}
+.ascandir-themer .act-footer button { flex: none; width: auto; white-space: nowrap; padding: 0 0.7rem; }
+.ascandir-themer .act-footer .act-spacer { flex: 1; }
+.ascandir-themer .act-footer button.act-primary { box-shadow: 0 0 0 2px var(--color-warm-2, #ee9b3a) inset; }
+
+/* ---------- Mini-Vorschau ---------- */
+.ascandir-themer .act-preview { border-radius: 6px; overflow: hidden; border: 1px solid #ffffff1f; flex: none; }
+.ascandir-themer .act-pv-label { padding: 0.3rem 0.6rem; font-weight: bold; background: #0000001a; }
+.ascandir-themer .act-pv-label .hint { font-weight: normal; margin: 0 0 0 0.4rem; }
+.ascandir-themer .act-pv-stage {
+  --act-radius: 0px; --act-border: 1px; --act-font: inherit; --act-font-scale: 1; --act-glow: none; --act-text-shadow: none;
+  position: relative;
+  display: grid;
+  grid-template-columns: 140px 70px minmax(0, 1fr);
+  grid-template-rows: auto auto auto;
+  gap: 8px;
+  padding: 12px;
+  font-family: var(--act-font);
+  font-size: calc(13px * var(--act-font-scale));
+  color: var(--ech-mainAction-base-color);
+  background:
+    radial-gradient(circle at 30% 20%, #6b7a3a 0, transparent 60%),
+    radial-gradient(circle at 80% 70%, #3d4a22 0, transparent 55%),
+    #4f5a2a;
+  text-shadow: var(--act-text-shadow);
+}
+.ascandir-themer .act-pv-portrait {
+  grid-row: 1 / span 2; min-height: 150px; display: flex; flex-direction: column; justify-content: space-between;
+  background: linear-gradient(160deg, #7a5a3a, #2b2018);
+  background-color: var(--ech-portrait-base-background);
+  background-blend-mode: overlay;
+  border: var(--act-portrait-border, var(--act-border)) solid var(--ech-portrait-base-border);
+  border-radius: var(--act-radius);
+  box-shadow: var(--act-portrait-frame, none);
+  color: var(--ech-portrait-base-color);
+  overflow: hidden;
+}
+.ascandir-themer .act-pv-name { padding: 6px 8px; font-weight: bold; font-size: 1.15em; display: flex; flex-direction: column; background: linear-gradient(#00000088, transparent); }
+.ascandir-themer .act-pv-name small { font-weight: normal; font-size: 0.75em; opacity: 0.85; }
+.ascandir-themer .act-pv-stats { display: flex; gap: 2px; padding: 4px; }
+.ascandir-themer .act-pv-stat {
+  flex: 1; text-align: center; padding: 3px 2px; font-weight: 900; font-size: 0.8em;
+  color: var(--act-statText); background: var(--act-statBackground);
+  border: 1px solid var(--ech-mainAction-base-border); border-radius: var(--act-radius);
+}
+.ascandir-themer .act-pv-stage b.acc { color: var(--act-accent); }
+.ascandir-themer .act-pv-stage b.hp { color: var(--act-hp); }
+.ascandir-themer .act-pv-side { grid-row: 1 / span 2; display: flex; flex-direction: column; gap: 4px; }
+.ascandir-themer .act-pv-pbtn {
+  flex: 1; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 0.75em; font-weight: bold;
+  color: var(--act-statText); background: var(--act-statBackground);
+  border: var(--act-border) solid var(--ech-mainAction-base-border); border-radius: var(--act-radius);
+}
+.ascandir-themer .act-pv-actions { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-end; min-width: 0; }
+.ascandir-themer .act-pv-col { display: flex; flex-direction: column; gap: 4px; }
+.ascandir-themer .act-pv-bar {
+  display: flex; align-items: center; justify-content: center; gap: 4px; padding: 2px 6px;
+  font-size: 0.75em; font-weight: bold; text-transform: uppercase;
+  color: var(--act-panelText); background: var(--ech-mainAction-background-color);
+  border: var(--act-border) solid var(--ech-mainAction-base-border); border-radius: var(--act-radius);
+}
+.ascandir-themer .act-pv-row { display: flex; gap: 4px; }
+.ascandir-themer .act-pv-btn {
+  width: 56px; height: 56px; display: flex; align-items: flex-end; justify-content: center; padding: 4px; text-align: center;
+  font-size: 0.72em; font-weight: bold; text-transform: uppercase; line-height: 1.1;
+  border: var(--act-border) solid; border-radius: var(--act-radius);
+}
+.ascandir-themer .act-pv-btn.main { background: var(--ech-mainAction-base-background); color: var(--ech-mainAction-base-color); border-color: var(--ech-mainAction-base-border); }
+.ascandir-themer .act-pv-btn.main.hover { background: var(--ech-mainAction-hover-background); color: var(--ech-mainAction-hover-color); border-color: var(--ech-mainAction-hover-border); box-shadow: var(--act-glow); }
+.ascandir-themer .act-pv-btn.bonus { background: var(--ech-bonusAction-base-background); color: var(--ech-bonusAction-base-color); border-color: var(--ech-bonusAction-base-border); }
+.ascandir-themer .act-pv-btn.reaction { background: var(--ech-reaction-base-background); color: var(--ech-reaction-base-color); border-color: var(--ech-reaction-base-border); }
+.ascandir-themer .act-pv-btn.free { background: var(--ech-freeAction-base-background); color: var(--ech-freeAction-base-color); border-color: var(--ech-freeAction-base-border); }
+.ascandir-themer .act-pv-btn.endTurn { background: var(--ech-endTurn-base-background); color: var(--ech-endTurn-base-color); border-color: var(--ech-endTurn-base-border); }
+.ascandir-themer .act-pv-btn.bonus:hover { background: var(--ech-bonusAction-hover-background); color: var(--ech-bonusAction-hover-color); border-color: var(--ech-bonusAction-hover-border); box-shadow: var(--act-glow); }
+.ascandir-themer .act-pv-btn.reaction:hover { background: var(--ech-reaction-hover-background); color: var(--ech-reaction-hover-color); border-color: var(--ech-reaction-hover-border); box-shadow: var(--act-glow); }
+.ascandir-themer .act-pv-btn.free:hover { background: var(--ech-freeAction-hover-background); color: var(--ech-freeAction-hover-color); border-color: var(--ech-freeAction-hover-border); box-shadow: var(--act-glow); }
+.ascandir-themer .act-pv-btn.endTurn:hover { background: var(--ech-endTurn-hover-background); color: var(--ech-endTurn-hover-color); border-color: var(--ech-endTurn-hover-border); box-shadow: var(--act-glow); }
+.ascandir-themer .act-pv-btn.main:not(.hover):hover { background: var(--ech-mainAction-hover-background); color: var(--ech-mainAction-hover-color); border-color: var(--ech-mainAction-hover-border); box-shadow: var(--act-glow); }
+
+.ascandir-themer .act-pv-pip { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--act-pip); box-shadow: 0 0 6px var(--act-pipGlow); }
+.ascandir-themer .act-pv-pip.used { background: var(--act-pipUsed); box-shadow: none; }
+
+.ascandir-themer .act-pv-move {
+  grid-column: 3; display: flex; align-items: center; gap: 4px; padding: 4px 8px; align-self: start;
+  color: var(--act-panelText); background: var(--ech-mainAction-background-color);
+  border: var(--act-border) solid var(--ech-mainAction-base-border); border-radius: var(--act-radius);
+}
+.ascandir-themer .act-pv-move-txt { margin-right: 4px; font-weight: bold; }
+.ascandir-themer .act-pv-space { width: 18px; height: 8px; border-radius: 2px; }
+.ascandir-themer .act-pv-space.used { background: var(--ech-movement-used-background); box-shadow: 0 0 6px var(--ech-movement-used-boxShadow); }
+.ascandir-themer .act-pv-space.base { background: var(--ech-movement-baseMovement-background); box-shadow: 0 0 6px var(--ech-movement-baseMovement-boxShadow); }
+.ascandir-themer .act-pv-space.dash { background: var(--ech-movement-dashMovement-background); box-shadow: 0 0 6px var(--ech-movement-dashMovement-boxShadow); }
+.ascandir-themer .act-pv-space.danger { background: var(--ech-movement-dangerMovement-background); box-shadow: 0 0 6px var(--ech-movement-dangerMovement-boxShadow); }
+
+.ascandir-themer .act-pv-tooltip { text-shadow: none; grid-column: 1 / span 2; border-radius: var(--act-radius); overflow: hidden; font-size: 0.85em; }
+.ascandir-themer .act-pv-tt-head { padding: 3px 8px; font-weight: bold; text-align: center; background: var(--ech-tooltip-header-background); color: var(--ech-tooltip-header-color); border: 1px solid var(--ech-tooltip-header-border); }
+.ascandir-themer .act-pv-tt-sub { padding: 2px 8px; background: var(--ech-tooltip-subtitle-background); color: var(--ech-tooltip-subtitle-color); border: 1px solid var(--ech-tooltip-subtitle-border); border-top: none; }
+.ascandir-themer .act-pv-tt-body { padding: 4px 8px; background: var(--ech-tooltip-body-background); color: var(--ech-tooltip-body-color); border: 1px solid var(--ech-tooltip-body-border); border-top: none; }
+
+.ascandir-themer .act-pv-slots {
+  grid-column: 3; justify-self: start; display: flex; align-items: center; gap: 4px; padding: 3px 8px; font-size: 0.75em; font-weight: bold; text-transform: uppercase;
+  color: var(--act-panelText); background: var(--ech-mainAction-background-color);
+  border: 1px solid var(--ech-mainAction-base-border); border-radius: var(--act-radius);
+}
+.ascandir-themer .act-pv-dialog { grid-column: 3; justify-self: start; display: flex; gap: 4px; margin-top: -4px; }
+.ascandir-themer .act-pv-dbtn { padding: 3px 10px; font-size: 0.8em; border: 1px solid; border-radius: var(--act-radius); background: var(--ech-buttons-base-background); color: var(--ech-buttons-base-color); border-color: var(--ech-buttons-base-border); }
+.ascandir-themer .act-pv-dbtn.hover { background: var(--ech-buttons-hover-background); color: var(--ech-buttons-hover-color); border-color: var(--ech-buttons-hover-border); }
+
+/* ---------- Texturfelder ---------- */
+.ascandir-themer .act-path { display: flex; gap: 0.3rem; }
+.ascandir-themer .act-path input { flex: 1; font-family: monospace; font-size: 0.85rem; }
+.ascandir-themer .act-path button { flex: none; width: 2rem; justify-content: center; }
+
+/* ---------- Texturen in der Vorschau ---------- */
+.ascandir-themer .act-pv-bar,
+.ascandir-themer .act-pv-move,
+.ascandir-themer .act-pv-slots,
+.ascandir-themer .act-pv-stat,
+.ascandir-themer .act-pv-pbtn {
+  background-image: var(--act-tex-panel, none);
+  background-size: var(--act-tex-panel-size, 256px);
+}
+.ascandir-themer .act-pv-tooltip {
+  position: relative;
+  background-image: var(--act-tex-tooltip, none);
+  background-size: 100% 100%;
+}
+.ascandir-themer .tx-frame .act-pv-portrait,
+.ascandir-themer .tx-frame .act-pv-tooltip {
+  border-style: solid;
+  border-width: var(--act-frame-w);
+  border-image: var(--act-frame) var(--act-frame-slice) / var(--act-frame-w) / 0 stretch;
+  border-radius: 0;
+  overflow: visible;
+}
+.ascandir-themer .tx-frame .act-pv-tt-head,
+.ascandir-themer .tx-frame .act-pv-tt-sub,
+.ascandir-themer .tx-frame .act-pv-tt-body { border: none; }
+.ascandir-themer .tx-bframe .act-pv-btn,
+.ascandir-themer .tx-bframe .act-pv-bar,
+.ascandir-themer .tx-bframe .act-pv-pbtn,
+.ascandir-themer .tx-bframe .act-pv-stat,
+.ascandir-themer .tx-bframe .act-pv-move,
+.ascandir-themer .tx-bframe .act-pv-slots {
+  border-style: solid;
+  border-width: var(--act-bframe-w);
+  border-image: var(--act-bframe) var(--act-bframe-slice) / var(--act-bframe-w) / 0 stretch;
+  border-radius: 0;
+}
+.ascandir-themer .tx-seal .act-pv-tooltip::after {
+  content: "";
+  position: absolute;
+  top: -14px; right: -12px;
+  width: 40px; height: 50px;
+  background: var(--act-seal) center / contain no-repeat;
+  filter: drop-shadow(0 2px 3px #000000aa);
+  pointer-events: none;
+}

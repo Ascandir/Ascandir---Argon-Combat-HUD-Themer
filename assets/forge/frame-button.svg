@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="48" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="bh" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d6a45e"/>
+      <stop offset="0.5" stop-color="#8a5c2a"/>
+      <stop offset="1" stop-color="#4e3217"/>
+    </linearGradient>
+    <linearGradient id="bv" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d6a45e"/>
+      <stop offset="0.5" stop-color="#8a5c2a"/>
+      <stop offset="1" stop-color="#4e3217"/>
+    </linearGradient>
+    <radialGradient id="rv" cx="0.35" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#ffe2a8"/>
+      <stop offset="0.5" stop-color="#a87232"/>
+      <stop offset="1" stop-color="#2e1c0a"/>
+    </radialGradient>
+    <g id="c">
+      <path d="M1 1 H12 V4 H4 V12 H1 Z" fill="#c8954f" stroke="#0d0703" stroke-width="0.8"/>
+      <circle cx="5.5" cy="5.5" r="2.2" fill="url(#rv)" stroke="#120a04" stroke-width="0.5"/>
+    </g>
+  </defs>
+  <rect x="0.5" y="0.5" width="47" height="47" fill="none" stroke="#0a0502" stroke-width="1"/>
+  <rect x="1" y="1" width="46" height="3" fill="url(#bh)"/>
+  <rect x="1" y="44" width="46" height="3" fill="url(#bh)" transform="rotate(180 24 45.5)"/>
+  <rect x="1" y="1" width="3" height="46" fill="url(#bv)"/>
+  <rect x="44" y="1" width="3" height="46" fill="url(#bv)" transform="rotate(180 45.5 24)"/>
+  <rect x="4.5" y="4.5" width="39" height="39" fill="none" stroke="#000" stroke-width="1" opacity="0.85"/>
+  <use xlink:href="#c"/>
+  <use xlink:href="#c" transform="translate(48 0) scale(-1 1)"/>
+  <use xlink:href="#c" transform="translate(0 48) scale(1 -1)"/>
+  <use xlink:href="#c" transform="translate(48 48) scale(-1 -1)"/>
+</svg>

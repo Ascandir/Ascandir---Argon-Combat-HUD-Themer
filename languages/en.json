@@ -1,0 +1,156 @@
+{
+  "ascandir-argon-combat-hud-themer": {
+    "settings": {
+      "editor": {
+        "name": "Theme Editor",
+        "label": "Open Theme Editor",
+        "hint": "Create, edit, import and export your own themes for the Argon Combat HUD."
+      },
+      "worldTheme": {
+        "name": "Theme for everyone (world)",
+        "hint": "All players see this theme in the Argon Combat HUD. \"Argon's own look\" turns the themer off so Argon's own color settings apply again."
+      },
+      "allowPlayerChoice": {
+        "name": "Players may choose their own theme",
+        "hint": "If enabled, every player can pick a different theme for themselves in their settings."
+      },
+      "clientTheme": {
+        "name": "My theme",
+        "hint": "Only for you. Only takes effect if the GM allows players to choose."
+      }
+    },
+    "choices": {
+      "none": "Argon's own look",
+      "world": "As set by the GM"
+    },
+    "editor": {
+      "title": "Argon Combat HUD Themer",
+      "library": "Theme library",
+      "myThemes": "My themes",
+      "builtinThemes": "Ascandir presets",
+      "noCustom": "No custom themes yet.",
+      "new": "New theme",
+      "newName": "New theme",
+      "untitled": "Untitled theme",
+      "fromArgon": "Current Argon look",
+      "fromArgonHint": "Create a new theme from the colors currently set in Argon's own theme menu.",
+      "fromArgonName": "My Argon theme",
+      "import": "Import",
+      "export": "Export to file",
+      "duplicate": "Duplicate",
+      "delete": "Delete",
+      "deleteConfirm": "Really delete the theme <b>{name}</b>?",
+      "copyName": "{name} (copy)",
+      "save": "Save",
+      "saveAsCopy": "Save as copy",
+      "activate": "Activate for everyone",
+      "revert": "Discard changes",
+      "resetToArgon": "Turn themer off (Argon's own look)",
+      "isWorldTheme": "Current theme for everyone",
+      "worldThemeIs": "Active for everyone",
+      "builtinHint": "Preset (read-only)",
+      "builtinNotice": "This is a bundled preset. Feel free to adjust it – saving automatically creates your own copy.",
+      "namePlaceholder": "Theme name",
+      "unsaved": "Unsaved changes",
+      "unsavedTitle": "Unsaved changes",
+      "unsavedText": "Your changes to this theme have not been saved. Continue and discard them?",
+      "opacity": "Opacity",
+      "preview": "Preview",
+      "previewHint": "The real HUD also shows your changes live while this window is open (only for you).",
+      "sectionStyle": "Font, shape & effects",
+      "font": "Font",
+      "fontArgon": "As set in Argon",
+      "fontScale": "Font size",
+      "radius": "Corner radius",
+      "borderWidth": "Border width",
+      "portraitFrame": "Glowing portrait frame",
+      "textShadow": "Text shadow (better readability)",
+      "hoverGlow": "Glow on hover",
+      "glowSize": "Glow strength",
+      "glowColor": "Glow color",
+      "sectionExtras": "Accent colors",
+      "extrasHint": "These colors are hard-coded in Argon and can only be changed here.",
+      "sectionArgon": "Argon colors",
+      "sectionCss": "Custom CSS (advanced)",
+      "cssHint": "Optional. Inserted after all other rules. Tip: add !important so your rules take effect.",
+      "pvLongRest": "Long Rest",
+      "pvShortRest": "Short Rest",
+      "pvAction": "Action",
+      "pvBonus": "Bonus",
+      "pvReaction": "Reaction",
+      "pvAttack": "Attack",
+      "pvHover": "Hover",
+      "pvFeature": "Feature",
+      "pvCast": "Spell",
+      "pvItem": "Item",
+      "pvEndTurn": "End turn",
+      "pvCantrip": "Cantrip",
+      "pvFire": "fire",
+      "pvSlots": "Level 1",
+      "pvButton": "Roll",
+      "sectionTextures": "Textures & frames",
+      "texturesHint": "Images from your Foundry files (PNG, WebP, SVG). Frames are stretched as 9-slice: corners stay undistorted, \"corner size\" is the corner size in the image in pixels.",
+      "texPanel": "Texture for bars & boxes",
+      "texPanelSize": "Texture tile size",
+      "texTooltip": "Tooltip background",
+      "texFrame": "Ornate frame (portrait, menu, tooltip)",
+      "texButtonFrame": "Frame for buttons & bars",
+      "texSlice": "↳ Corner size in image",
+      "texWidth": "↳ Frame width",
+      "texSeal": "Tooltip decoration (e.g. seal)",
+      "texNone": "no image",
+      "texBrowse": "Choose file"
+    },
+    "labels": {
+      "barBackground": "Action bar background",
+      "group": {
+        "portrait": "Portrait",
+        "mainAction": "Actions",
+        "bonusAction": "Bonus actions",
+        "freeAction": "Free actions / items",
+        "reaction": "Reactions",
+        "endTurn": "End turn",
+        "tooltip": "Tooltips & dialogs",
+        "abilityMenu": "Abilities / skills menu",
+        "buttons": "Dialog buttons",
+        "movement": "Movement tracker"
+      },
+      "state": {
+        "base": "Normal",
+        "hover": "Hover",
+        "header": "Header",
+        "subtitle": "Subtitle",
+        "body": "Body",
+        "used": "Used",
+        "baseMovement": "Movement",
+        "dashMovement": "Dash",
+        "dangerMovement": "Too far"
+      },
+      "prop": {
+        "background": "Background",
+        "color": "Text",
+        "border": "Border",
+        "boxShadow": "Glow"
+      },
+      "extra": {
+        "accent": "Accent (AC, DC, movement)",
+        "hp": "Current hit points",
+        "pip": "Pips available",
+        "pipGlow": "Pip glow",
+        "pipUsed": "Pips used",
+        "statText": "Stat box text",
+        "statBackground": "Stat box background",
+        "panelText": "Bar heading text"
+      }
+    },
+    "notify": {
+      "saved": "Theme \"{name}\" saved.",
+      "deleted": "Theme deleted.",
+      "activated": "\"{name}\" is now the theme for everyone.",
+      "argonRestored": "Themer turned off – Argon uses its own look again.",
+      "imported": "Theme imported. Don't forget to save!",
+      "importFailed": "The file could not be read as a theme.",
+      "argonMissing": "Argon Combat HUD Themer: the module \"Argon - Combat HUD (CORE)\" is not active."
+    }
+  }
+}

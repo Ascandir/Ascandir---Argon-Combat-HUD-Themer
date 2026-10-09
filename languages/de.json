@@ -1,0 +1,156 @@
+{
+  "ascandir-argon-combat-hud-themer": {
+    "settings": {
+      "editor": {
+        "name": "Theme-Editor",
+        "label": "Theme-Editor öffnen",
+        "hint": "Eigene Themes für das Argon Combat HUD erstellen, bearbeiten, importieren und exportieren."
+      },
+      "worldTheme": {
+        "name": "Theme für alle (Welt)",
+        "hint": "Dieses Theme sehen alle Spieler im Argon Combat HUD. „Argon-eigenes Aussehen“ schaltet den Themer aus, dann gelten wieder Argons eigene Farbeinstellungen."
+      },
+      "allowPlayerChoice": {
+        "name": "Spieler dürfen eigenes Theme wählen",
+        "hint": "Wenn aktiv, kann jeder Spieler in seinen Einstellungen ein anderes Theme für sich auswählen."
+      },
+      "clientTheme": {
+        "name": "Mein Theme",
+        "hint": "Nur für dich. Wirkt nur, wenn der Spielleiter die eigene Auswahl erlaubt hat."
+      }
+    },
+    "choices": {
+      "none": "Argon-eigenes Aussehen",
+      "world": "Wie vom Spielleiter festgelegt"
+    },
+    "editor": {
+      "title": "Argon Combat HUD Themer",
+      "library": "Theme-Bibliothek",
+      "myThemes": "Eigene Themes",
+      "builtinThemes": "Ascandir-Vorlagen",
+      "noCustom": "Noch keine eigenen Themes.",
+      "new": "Neues Theme",
+      "newName": "Neues Theme",
+      "untitled": "Unbenanntes Theme",
+      "fromArgon": "Aktuelles Argon-Aussehen",
+      "fromArgonHint": "Neues Theme aus den Farben erstellen, die du gerade in Argons eigenem Theme-Menü eingestellt hast.",
+      "fromArgonName": "Mein Argon-Theme",
+      "import": "Importieren",
+      "export": "Als Datei exportieren",
+      "duplicate": "Duplizieren",
+      "delete": "Löschen",
+      "deleteConfirm": "Soll das Theme <b>{name}</b> wirklich gelöscht werden?",
+      "copyName": "{name} (Kopie)",
+      "save": "Speichern",
+      "saveAsCopy": "Als Kopie speichern",
+      "activate": "Für alle aktivieren",
+      "revert": "Änderungen verwerfen",
+      "resetToArgon": "Themer ausschalten (Argon-eigenes Aussehen)",
+      "isWorldTheme": "Aktuelles Theme für alle",
+      "worldThemeIs": "Aktiv für alle",
+      "builtinHint": "Vorlage (schreibgeschützt)",
+      "builtinNotice": "Das ist eine mitgelieferte Vorlage. Du kannst sie frei anpassen – beim Speichern wird automatisch eine eigene Kopie angelegt.",
+      "namePlaceholder": "Name des Themes",
+      "unsaved": "Ungespeicherte Änderungen",
+      "unsavedTitle": "Ungespeicherte Änderungen",
+      "unsavedText": "Deine Änderungen an diesem Theme sind noch nicht gespeichert. Trotzdem fortfahren und die Änderungen verwerfen?",
+      "opacity": "Deckkraft",
+      "preview": "Vorschau",
+      "previewHint": "Das echte HUD zeigt die Änderungen ebenfalls live, solange dieses Fenster offen ist (nur bei dir).",
+      "sectionStyle": "Schrift, Form & Effekte",
+      "font": "Schriftart",
+      "fontArgon": "Wie in Argon eingestellt",
+      "fontScale": "Schriftgröße",
+      "radius": "Eckenrundung",
+      "borderWidth": "Rahmenstärke",
+      "portraitFrame": "Leuchtender Portrait-Rahmen",
+      "textShadow": "Textschatten (bessere Lesbarkeit)",
+      "hoverGlow": "Leuchten beim Darüberfahren",
+      "glowSize": "Stärke des Leuchtens",
+      "glowColor": "Farbe des Leuchtens",
+      "sectionExtras": "Akzentfarben",
+      "extrasHint": "Diese Farben sind in Argon fest eingebaut und lassen sich nur hier ändern.",
+      "sectionArgon": "Argon-Farben",
+      "sectionCss": "Eigenes CSS (für Fortgeschrittene)",
+      "cssHint": "Optional. Wird nach allen anderen Regeln eingefügt. Tipp: Regeln mit !important versehen, damit sie greifen.",
+      "pvLongRest": "Lange Rast",
+      "pvShortRest": "Kurze Rast",
+      "pvAction": "Aktion",
+      "pvBonus": "Bonus",
+      "pvReaction": "Reaktion",
+      "pvAttack": "Angriff",
+      "pvHover": "Hover",
+      "pvFeature": "Merkmal",
+      "pvCast": "Zauber",
+      "pvItem": "Gegenstand",
+      "pvEndTurn": "Zug beenden",
+      "pvCantrip": "Zaubertrick",
+      "pvFire": "Feuer",
+      "pvSlots": "Grad 1",
+      "pvButton": "Würfeln",
+      "sectionTextures": "Texturen & Rahmen",
+      "texturesHint": "Bilder aus deinen Foundry-Dateien (PNG, WebP, SVG). Rahmen werden als 9-Slice gestreckt: die Ecken bleiben unverzerrt, „Ecken-Größe“ ist die Größe der Ecke im Bild in Pixeln.",
+      "texPanel": "Textur für Leisten & Kästen",
+      "texPanelSize": "Kachelgröße der Textur",
+      "texTooltip": "Tooltip-Hintergrund",
+      "texFrame": "Zierrahmen (Portrait, Menü, Tooltip)",
+      "texButtonFrame": "Rahmen für Knöpfe & Leisten",
+      "texSlice": "↳ Ecken-Größe im Bild",
+      "texWidth": "↳ Rahmenbreite",
+      "texSeal": "Deko am Tooltip (z. B. Siegel)",
+      "texNone": "kein Bild",
+      "texBrowse": "Datei auswählen"
+    },
+    "labels": {
+      "barBackground": "Hintergrund der Aktionsleisten",
+      "group": {
+        "portrait": "Portrait",
+        "mainAction": "Aktionen",
+        "bonusAction": "Bonusaktionen",
+        "freeAction": "Freie Aktionen / Gegenstände",
+        "reaction": "Reaktionen",
+        "endTurn": "Zug beenden",
+        "tooltip": "Tooltips & Dialogfenster",
+        "abilityMenu": "Attribute-/Fertigkeitenmenü",
+        "buttons": "Knöpfe in Dialogen",
+        "movement": "Bewegungsanzeige"
+      },
+      "state": {
+        "base": "Normal",
+        "hover": "Hover",
+        "header": "Kopfzeile",
+        "subtitle": "Untertitel",
+        "body": "Inhalt",
+        "used": "Verbraucht",
+        "baseMovement": "Bewegung",
+        "dashMovement": "Sprinten",
+        "dangerMovement": "Zu weit"
+      },
+      "prop": {
+        "background": "Hintergrund",
+        "color": "Text",
+        "border": "Rahmen",
+        "boxShadow": "Leuchten"
+      },
+      "extra": {
+        "accent": "Akzent (RK, SG, Bewegung)",
+        "hp": "Aktuelle Trefferpunkte",
+        "pip": "Punkte verfügbar",
+        "pipGlow": "Leuchten der Punkte",
+        "pipUsed": "Punkte verbraucht",
+        "statText": "Text in Werte-Kästen",
+        "statBackground": "Hintergrund Werte-Kästen",
+        "panelText": "Text der Leisten-Überschriften"
+      }
+    },
+    "notify": {
+      "saved": "Theme „{name}“ gespeichert.",
+      "deleted": "Theme gelöscht.",
+      "activated": "„{name}“ ist jetzt das Theme für alle.",
+      "argonRestored": "Themer ausgeschaltet – Argon nutzt wieder sein eigenes Aussehen.",
+      "imported": "Theme importiert. Speichern nicht vergessen!",
+      "importFailed": "Die Datei konnte nicht als Theme gelesen werden.",
+      "argonMissing": "Argon Combat HUD Themer: Das Modul „Argon - Combat HUD (CORE)“ ist nicht aktiv."
+    }
+  }
+}
