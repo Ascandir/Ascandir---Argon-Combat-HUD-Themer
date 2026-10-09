@@ -35,9 +35,9 @@ const ICONS = {
   // Attribute
   str: "fa-hand-fist", dex: "fa-feather-pointed", con: "fa-heart", int: "fa-book-open", wis: "fa-eye", cha: "fa-sun",
   // Fertigkeiten
-  acr: "fa-person-running", ani: "fa-paw", arc: "fa-wand-sparkles", ath: "fa-dumbbell", dec: "fa-masks-theater",
-  his: "fa-landmark", ins: "fa-eye", itm: "fa-skull", inv: "fa-magnifying-glass", med: "fa-staff-snake",
-  nat: "fa-leaf", prc: "fa-ear-listen", prf: "fa-music", per: "fa-comments", rel: "fa-hands-praying",
+  acr: "fa-person-running", ani: "fa-paw", arc: "fa-burst", ath: "fa-arrows-rotate", dec: "fa-masks-theater",
+  his: "fa-building-columns", ins: "fa-eye", itm: "fa-skull", inv: "fa-magnifying-glass", med: "fa-leaf",
+  nat: "fa-leaf", prc: "fa-eye", prf: "fa-masks-theater", per: "fa-comment", rel: "fa-hands-praying",
   slt: "fa-hand-sparkles", ste: "fa-user-ninja", sur: "fa-campground",
 };
 
@@ -84,7 +84,11 @@ function syncMenuIcons(root) {
     const span = li.querySelector(":scope > span");
     if (!span || span.querySelector(".asc-skill-icon")) continue;
     const cls = iconFor(span.textContent);
-    if (cls) span.prepend(makeIcon(cls));
+    if (!cls) continue;
+    // Symbol hinter den Übungs-Kreis/-Haken setzen, sonst an den Anfang
+    const prof = span.querySelector(":scope > i:not(.asc-skill-icon)");
+    if (prof) prof.after(makeIcon(cls));
+    else span.prepend(makeIcon(cls));
   }
 }
 

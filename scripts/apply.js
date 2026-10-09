@@ -165,16 +165,23 @@ function cssUrl(path) {
   return `url("${href.replace(/["\\]/g, "")}")`;
 }
 
+function borderImage(src, slice, width, repeat = "stretch") {
+  const w = `${width}px`;
+  return `border-style: solid !important;
+  border-width: ${w} !important;
+  border-image: ${cssUrl(src)} ${slice} / ${w} / 0 ${repeat} !important;
+  border-radius: 0 !important;`;
+}
+
 function buildTextureCss({ textures: t, style }) {
   const out = [];
+  const bar = style.continuousBar;
   if (t.panel) {
     out.push(`
-${HUD} .ability-menu:before,
-${HUD} .actions-container:before,
-${HUD} .movement-hud,
+${bar ? `${HUD} .action-hud .actions-container,` : `${HUD} .actions-container:before,`}
+${HUD} .movement-hud:not(:has(.button-hud-button)),
 ${HUD} .feature-accordion-title,
 ${HUD} .feature-spell-slots,
-${HUD} .portrait-hud .portrait-stat-block:not(.player-details):before,
 ${HUD} .portrait-hud .player-button:before,
 ${HUD} .weapon-sets .weapon-set {
   background-image: ${cssUrl(t.panel)} !important;
@@ -182,14 +189,26 @@ ${HUD} .weapon-sets .weapon-set {
   background-repeat: repeat !important;
 }`);
   }
+  // Dunkles Paneel für Menü, Rast-Knöpfe und Werteleiste (sonst gleiche Textur wie Leisten)
+  const menuTex = t.menuPanel || t.panel;
+  if (menuTex) {
+    out.push(`
+${HUD} .ability-menu:before,
+${HUD} .button-hud-button,
+${HUD} .portrait-hud .portrait-stat-block:not(.player-details):before {
+  background-image: ${cssUrl(menuTex)} !important;
+  background-size: ${t.panelSize}px !important;
+  background-repeat: repeat !important;
+}`);
+  }
   if (t.tooltip) {
     out.push(`
 .ech-tooltip {
-  background-image: ${cssUrl(t.tooltip)} !important;
-  background-size: 100% 100% !important;
-  background-repeat: no-repeat !important;
+  background: ${cssUrl(t.tooltip)} 0 0 / 100% 100% no-repeat padding-box, #24160a !important;
+  background-origin: padding-box !important;
 }
-.ech-tooltip .ech-tooltip-header { backdrop-filter: none !important; }
+.ech-tooltip .ech-tooltip-header,
+.ech-tooltip .ech-tooltip-body { backdrop-filter: none !important; background-color: transparent !important; border-color: transparent !important; }
 .ech-highjack-window .window-header,
 .ech-highjack-window .window-content {
   background-image: ${cssUrl(t.tooltip)} !important;
@@ -197,32 +216,35 @@ ${HUD} .weapon-sets .weapon-set {
 }`);
   }
   if (t.frame) {
-    const w = `${t.frameWidth}px`;
     out.push(`
 ${HUD} .portrait-hud,
-${HUD} .ability-menu:before,
+${HUD} .ability-menu:before${t.tooltipFrame ? "" : ",\n.ech-tooltip"} {
+  ${borderImage(t.frame, t.frameSlice, t.frameWidth, t.frameRepeat)}
+}
+${HUD} .ability-menu { padding: ${t.frameWidth}px !important; }`);
+  }
+  if (t.tooltipFrame) {
+    out.push(`
 .ech-tooltip {
-  border-style: solid !important;
-  border-width: ${w} !important;
-  border-image: ${cssUrl(t.frame)} ${t.frameSlice} / ${w} / 0 stretch !important;
-  border-radius: 0 !important;
+  ${borderImage(t.tooltipFrame, t.tooltipFrameSlice, t.tooltipFrameWidth, "stretch")}
 }`);
   }
   if (t.buttonFrame) {
-    const w = `${t.buttonFrameWidth}px`;
     out.push(`
 ${HUD} .action-element,
 ${HUD} .button-hud-button,
 ${HUD} .feature-element,
-${HUD} .actions-container:before,
-${HUD} .movement-hud,
+${bar ? "" : `${HUD} .actions-container:before,`}
+${HUD} .movement-hud:not(:has(.button-hud-button)),
 ${HUD} .weapon-sets .weapon-set,
-${HUD} .portrait-hud .player-button,
-${HUD} .portrait-hud .portrait-stat-block:not(.player-details) {
-  border-style: solid !important;
-  border-width: ${w} !important;
-  border-image: ${cssUrl(t.buttonFrame)} ${t.buttonFrameSlice} / ${w} / 0 stretch !important;
-  border-radius: 0 !important;
+${HUD} .portrait-hud .player-button${style.joinedStats ? "" : `,\n${HUD} .portrait-hud .portrait-stat-block:not(.player-details)`} {
+  ${borderImage(t.buttonFrame, t.buttonFrameSlice, t.buttonFrameWidth)}
+}`);
+  }
+  if (bar && t.barFrame) {
+    out.push(`
+${HUD} .action-hud .actions-container {
+  ${borderImage(t.barFrame, t.barFrameSlice, t.barFrameWidth, t.frameRepeat)}
 }`);
   }
   if (t.seal) {
@@ -230,11 +252,11 @@ ${HUD} .portrait-hud .portrait-stat-block:not(.player-details) {
 .ech-tooltip-container::after {
   content: "";
   position: absolute;
-  top: -18px;
-  right: -16px;
-  width: 52px;
-  height: 66px;
-  background: ${cssUrl(t.seal)} center / contain no-repeat;
+  top: -22px;
+  right: -18px;
+  width: 58px;
+  height: 84px;
+  background: ${cssUrl(t.seal)} center top / contain no-repeat;
   pointer-events: none;
   z-index: 10001;
   filter: drop-shadow(0 2px 3px #000000aa);
@@ -276,6 +298,19 @@ function buildFeatureCss({ style: s, textures: t, extras: x, colors: c }) {
   const out = [];
   if (s.titleStrip) {
     out.push(`
+${HUD} .action-element .action-element-title {
+  height: auto !important;
+  min-height: 3rem;
+  padding: 0.5rem 0.35rem 0.45rem !important;
+  line-height: 1.1;
+}
+${HUD} .action-element-container .action-element .action-element-title {
+  min-height: 2rem;
+  font-size: 0.8em !important;
+  text-transform: uppercase !important;
+  padding: 0.3rem 0.2rem !important;
+}`);
+    out.push(`
 ${HUD} .action-element .action-element-title,
 ${HUD} .feature-element .feature-element-title {
   background: linear-gradient(to bottom, transparent 0%, #000000b3 45%, #000000e6 100%) !important;
@@ -294,10 +329,16 @@ ${HUD} .actions-container .action-pip { border-radius: 2px !important; }`);
 ${HUD} .ability-menu ul > li { border-top: 1px solid #00000099 !important; box-shadow: inset 0 1px 0 #ffffff0d; }
 ${HUD} .ability-menu ul > li.ability-title,
 ${HUD} .ability-menu ul.ability-toggle li {
-  background: linear-gradient(to bottom, #ffffff12, #00000040) !important;
-  letter-spacing: 0.06em;
-  border-bottom: 2px solid ${c["abilityMenu-border"]} !important;
+  position: relative;
+  background: linear-gradient(to bottom, #3a2814 0%, #1c130a 55%, #120c06 100%) !important;
+  letter-spacing: 0.05em;
+  color: ${x.panelText} !important;
+  border: 1px solid ${c["abilityMenu-border"]} !important;
+  box-shadow: inset 0 1px 0 #ffffff1f, inset 0 -2px 4px #000000aa, 0 2px 3px #000000aa !important;
+  margin: 2px 0;
 }
+${HUD} .ability-menu ul > li:not(.ability-title) { color: ${c["abilityMenu-base-color"]}; }
+${HUD} .ability-menu ul > li:not(.ability-title) > span:first-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 ${HUD} .ability-menu ul > li:not(.ability-title) > span:not(:first-child),
 ${HUD} .ability-menu ul > li:not(.ability-title) > div > span {
   border-left: 1px solid #00000099;
@@ -305,17 +346,19 @@ ${HUD} .ability-menu ul > li:not(.ability-title) > div > span {
 }
 ${HUD} .ability-menu ul > li i.fa-check,
 ${HUD} .ability-menu ul > li i.fa-check-double,
-${HUD} .ability-menu ul > li i.fa-adjust { color: ${x.accent} !important; }`);
+${HUD} .ability-menu ul > li i.fa-adjust { color: inherit !important; }`);
     if (t.headerOrnament) {
       out.push(`
-${HUD} .ability-menu ul.collapsible-panel > li.ability-title > span:first-child::after {
+${HUD} .ability-menu ul.collapsible-panel > li.ability-title > span:only-child::after {
   content: "";
-  display: inline-block;
-  width: 2.6em;
-  height: 1.1em;
-  margin-left: 0.6em;
-  vertical-align: middle;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 4.2em;
+  height: 2.2em;
+  transform: translate(-50%, -50%);
   background: ${cssUrl(t.headerOrnament)} center / contain no-repeat;
+  pointer-events: none;
 }`);
     }
   }
@@ -334,6 +377,65 @@ ${HUD} .ability-menu .asc-skill-icon {
   margin-right: 0.5ch;
   color: ${c["tooltip-header-color"]};
 }`);
+  }
+  if (s.tooltipTitleLeft) {
+    out.push(`
+.ech-tooltip .ech-tooltip-header { text-align: left !important; padding: 0.7rem 1rem 0.3rem !important; }
+.ech-tooltip.hide-subtitle .ech-tooltip-header { padding: 0.7rem 1rem 0.3rem !important; }
+.ech-tooltip .ech-tooltip-header h2 {
+  display: flex; align-items: center; gap: 0.55em;
+  margin: 0 !important; border: none !important;
+  font-weight: 700; font-size: 1.45em; line-height: 1.15;
+}
+.ech-tooltip .ech-tooltip-header .asc-skill-icon { font-size: 0.95em; margin-right: 0 !important; }
+.ech-tooltip .ech-tooltip-body .ech-tooltip-description { padding-top: 0.2rem; line-height: 1.3; }`);
+  }
+  if (s.hideName) {
+    out.push(`
+${HUD} .portrait-hud .player-details .player-name,
+${HUD} .portrait-hud .player-details .player-detail { display: none !important; }
+${HUD} .portrait-hud .portrait-stat-block.player-details { background: none !important; -webkit-mask-image: none !important; mask-image: none !important; }`);
+  }
+  if (s.joinedStats) {
+    out.push(`
+${HUD} .portrait-hud { justify-content: stretch !important; padding: 0 10px 10px !important; }
+${HUD} .portrait-hud .portrait-stat-block:not(.player-details) {
+  flex: 1 1 0;
+  margin: 0 !important;
+  border: 1px solid ${c["mainAction-base-border"]} !important;
+  border-left-width: 0 !important;
+  border-image: none !important;
+  border-radius: 0 !important;
+  box-shadow: inset 0 0 6px #000000cc;
+}
+${HUD} .portrait-hud .portrait-stat-block:not(.player-details):nth-child(1 of .portrait-stat-block:not(.player-details)) { border-left-width: 1px !important; }`);
+  }
+  if (s.continuousBar) {
+    // Aktionsleisten werden zu einer durchgehenden Planke; die Beschriftung liegt innen.
+    const fw = t.barFrame ? t.barFrameWidth : 0;
+    const padTop = 10, labelH = 46, gap = 8;
+    const padBottom = labelH + gap * 2;
+    const growth = padTop + padBottom + fw * 2 - 55;
+    out.push(`
+${HUD} .action-hud .actions-container {
+  margin-bottom: 0 !important;
+  padding: ${padTop}px 8px ${padBottom}px !important;
+  gap: 6px;
+}
+${HUD} .action-hud .actions-container:before {
+  left: 8px !important;
+  width: calc(100% - 16px) !important;
+  bottom: ${gap}px !important;
+  height: ${labelH}px !important;
+  background: linear-gradient(to bottom, #00000099, #000000cc) !important;
+  border: 1px solid #00000099 !important;
+  border-image: none !important;
+  box-shadow: inset 0 2px 6px #000000, 0 1px 0 #ffffff14 !important;
+  color: ${x.panelText} !important;
+  letter-spacing: 0.04em;
+}
+${HUD} .action-hud .actions-container .actions-uses-container { bottom: ${padBottom - 6}px !important; }
+${HUD} .action-hud .features-container { bottom: calc(270px + ${growth}px) !important; }`);
   }
   return out.join("\n");
 }

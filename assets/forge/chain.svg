@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="250" viewBox="0 0 22 250">
+  <defs>
+    <linearGradient id="bz" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f0c27a"/>
+      <stop offset="0.3" stop-color="#b07a38"/>
+      <stop offset="0.65" stop-color="#5e3a16"/>
+      <stop offset="1" stop-color="#c28c46"/>
+    </linearGradient>
+    <linearGradient id="bzd" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9a6a30"/>
+      <stop offset="1" stop-color="#3e260e"/>
+    </linearGradient>
+    <radialGradient id="rivet" cx="0.35" cy="0.3" r="0.75">
+      <stop offset="0" stop-color="#fff0c8"/>
+      <stop offset="0.35" stop-color="#c8924a"/>
+      <stop offset="1" stop-color="#2a1806"/>
+    </radialGradient>
+    <radialGradient id="iron" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#b9b4ac"/>
+      <stop offset="0.4" stop-color="#55504a"/>
+      <stop offset="1" stop-color="#141210"/>
+    </radialGradient>
+  </defs>
+  <rect x="4" y="4" width="14" height="24" rx="7" fill="none" stroke="url(#iron)" stroke-width="4.5"/><rect x="4" y="4" width="14" height="24" rx="7" fill="none" stroke="#0a0806" stroke-width="0.8"/>
+  <rect x="9" y="21" width="4" height="24" rx="2" fill="url(#iron)" stroke="#0a0806" stroke-width="0.8"/>
+  <rect x="4" y="38" width="14" height="24" rx="7" fill="none" stroke="url(#iron)" stroke-width="4.5"/><rect x="4" y="38" width="14" height="24" rx="7" fill="none" stroke="#0a0806" stroke-width="0.8"/>
+  <rect x="9" y="55" width="4" height="24" rx="2" fill="url(#iron)" stroke="#0a0806" stroke-width="0.8"/>
+  <rect x="4" y="72" width="14" height="24" rx="7" fill="none" stroke="url(#iron)" stroke-width="4.5"/><rect x="4" y="72" width="14" height="24" rx="7" fill="none" stroke="#0a0806" stroke-width="0.8"/>
+  <rect x="9" y="89" width="4" height="24" rx="2" fill="url(#iron)" stroke="#0a0806" stroke-width="0.8"/>
+  <rect x="4" y="106" width="14" height="24" rx="7" fill="none" stroke="url(#iron)" stroke-width="4.5"/><rect x="4" y="106" width="14" height="24" rx="7" fill="none" stroke="#0a0806" stroke-width="0.8"/>
+  <rect x="9" y="123" width="4" height="24" rx="2" fill="url(#iron)" stroke="#0a0806" stroke-width="0.8"/>
+  <rect x="4" y="140" width="14" height="24" rx="7" fill="none" stroke="url(#iron)" stroke-width="4.5"/><rect x="4" y="140" width="14" height="24" rx="7" fill="none" stroke="#0a0806" stroke-width="0.8"/>
+  <rect x="9" y="157" width="4" height="24" rx="2" fill="url(#iron)" stroke="#0a0806" stroke-width="0.8"/>
+  <rect x="4" y="174" width="14" height="24" rx="7" fill="none" stroke="url(#iron)" stroke-width="4.5"/><rect x="4" y="174" width="14" height="24" rx="7" fill="none" stroke="#0a0806" stroke-width="0.8"/>
+  <rect x="9" y="191" width="4" height="24" rx="2" fill="url(#iron)" stroke="#0a0806" stroke-width="0.8"/>
+  <rect x="4" y="208" width="14" height="24" rx="7" fill="none" stroke="url(#iron)" stroke-width="4.5"/><rect x="4" y="208" width="14" height="24" rx="7" fill="none" stroke="#0a0806" stroke-width="0.8"/>
+  <rect x="9" y="225" width="4" height="24" rx="2" fill="url(#iron)" stroke="#0a0806" stroke-width="0.8"/>
+</svg>

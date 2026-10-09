@@ -172,6 +172,10 @@ export function defaultTheme() {
       ornateMenu: false,     // verziertes Attribute-/Fertigkeitenmenü (Kopfleisten, Spaltenlinien)
       squarePips: false,     // eckige Zauberplatz-Punkte
       titleStrip: false,     // dunkler Verlauf hinter den Knopf-Beschriftungen
+      tooltipTitleLeft: false, // Tooltip-Titel linksbündig mit Symbol
+      joinedStats: false,    // HP / RK / SG als eine durchgehende Leiste
+      continuousBar: false,  // Aktionsleisten als durchgehende Planke mit innenliegender Beschriftung
+      hideName: false,       // Name & Stufe am Portrait ausblenden (Zustände bleiben sichtbar)
     },
     textures: {
       panel: "",           // Textur für Leisten & Kästen (kachelt)
@@ -180,6 +184,14 @@ export function defaultTheme() {
       frame: "",           // Zierrahmen für Portrait, Attribute-Menü, Tooltip (9-Slice)
       frameSlice: 40,
       frameWidth: 16,
+      frameRepeat: "stretch", // "stretch" oder "round" (Kanten wiederholen statt strecken)
+      menuPanel: "",       // eigene Textur für Menü, Rast-Knöpfe, Werteleiste (sonst wie Leisten)
+      tooltipFrame: "",    // eigener Rahmen nur für Tooltips (sonst Zierrahmen)
+      tooltipFrameSlice: 30,
+      tooltipFrameWidth: 16,
+      barFrame: "",        // Rahmen um die durchgehende Aktionsplanke
+      barFrameSlice: 40,
+      barFrameWidth: 16,
       buttonFrame: "",     // Rahmen für Aktions-/Zauber-Knöpfe (9-Slice)
       buttonFrameSlice: 12,
       buttonFrameWidth: 6,
@@ -301,6 +313,10 @@ export function normalizeTheme(data = {}) {
   theme.style.ornateMenu = !!s.ornateMenu;
   theme.style.squarePips = !!s.squarePips;
   theme.style.titleStrip = !!s.titleStrip;
+  theme.style.tooltipTitleLeft = !!s.tooltipTitleLeft;
+  theme.style.joinedStats = !!s.joinedStats;
+  theme.style.continuousBar = !!s.continuousBar;
+  theme.style.hideName = !!s.hideName;
 
   const tx = data.textures ?? {};
   theme.textures = {
@@ -310,6 +326,14 @@ export function normalizeTheme(data = {}) {
     frame: cleanPath(tx.frame),
     frameSlice: clampNumber(tx.frameSlice, 1, 500, base.textures.frameSlice),
     frameWidth: clampNumber(tx.frameWidth, 1, 64, base.textures.frameWidth),
+    frameRepeat: tx.frameRepeat === "round" ? "round" : "stretch",
+    menuPanel: cleanPath(tx.menuPanel),
+    tooltipFrame: cleanPath(tx.tooltipFrame),
+    tooltipFrameSlice: clampNumber(tx.tooltipFrameSlice, 1, 500, base.textures.tooltipFrameSlice),
+    tooltipFrameWidth: clampNumber(tx.tooltipFrameWidth, 1, 64, base.textures.tooltipFrameWidth),
+    barFrame: cleanPath(tx.barFrame),
+    barFrameSlice: clampNumber(tx.barFrameSlice, 1, 500, base.textures.barFrameSlice),
+    barFrameWidth: clampNumber(tx.barFrameWidth, 1, 64, base.textures.barFrameWidth),
     buttonFrame: cleanPath(tx.buttonFrame),
     buttonFrameSlice: clampNumber(tx.buttonFrameSlice, 1, 500, base.textures.buttonFrameSlice),
     buttonFrameWidth: clampNumber(tx.buttonFrameWidth, 1, 32, base.textures.buttonFrameWidth),

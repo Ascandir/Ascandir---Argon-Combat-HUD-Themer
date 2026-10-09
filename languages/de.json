@@ -115,7 +115,17 @@
       "ornY": "Abstand senkrecht",
       "ornLayer": "Ebene",
       "ornWidth": "Breite",
-      "ornHeight": "Höhe"
+      "ornHeight": "Höhe",
+      "tooltipTitleLeft": "Tooltip-Titel linksbündig mit Symbol",
+      "joinedStats": "HP / RK / SG als durchgehende Leiste",
+      "continuousBar": "Aktionsleisten als durchgehende Planke",
+      "hideName": "Name & Stufe am Portrait ausblenden",
+      "texMenuPanel": "Textur für Menü & Rast-Knöpfe",
+      "texRepeat": "↳ Kanten",
+      "texRepeatStretch": "strecken",
+      "texRepeatRound": "wiederholen",
+      "texTooltipFrame": "Eigener Tooltip-Rahmen",
+      "texBarFrame": "Rahmen der Aktionsplanke"
     },
     "labels": {
       "barBackground": "Hintergrund der Aktionsleisten",

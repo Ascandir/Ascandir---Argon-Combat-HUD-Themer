@@ -115,7 +115,17 @@
       "ornY": "Vertical offset",
       "ornLayer": "Layer",
       "ornWidth": "Width",
-      "ornHeight": "Height"
+      "ornHeight": "Height",
+      "tooltipTitleLeft": "Tooltip title left-aligned with icon",
+      "joinedStats": "HP / AC / DC as one joined bar",
+      "continuousBar": "Action bars as one continuous plank",
+      "hideName": "Hide name & level on portrait",
+      "texMenuPanel": "Texture for menu & rest buttons",
+      "texRepeat": "↳ Edges",
+      "texRepeatStretch": "stretch",
+      "texRepeatRound": "repeat",
+      "texTooltipFrame": "Separate tooltip frame",
+      "texBarFrame": "Action plank frame"
     },
     "labels": {
       "barBackground": "Action bar background",
