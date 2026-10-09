@@ -99,7 +99,23 @@
       "texWidth": "↳ Frame width",
       "texSeal": "Tooltip decoration (e.g. seal)",
       "texNone": "no image",
-      "texBrowse": "Choose file"
+      "texBrowse": "Choose file",
+      "skillIcons": "Icons before abilities & skills",
+      "ornateMenu": "Ornate abilities menu (header bars, columns)",
+      "titleStrip": "Dark strip behind button labels",
+      "squarePips": "Square spell slot pips",
+      "texHeaderOrnament": "Ornament in menu header bars",
+      "sectionOrnaments": "Decorations (lanterns, banners, crests …)",
+      "ornamentsHint": "Freely placed images attached to the HUD. Only visible on the real HUD, not in the mini preview. Offsets and sizes in HUD pixels (scaled with Argon's scale); negative values reach beyond the edge.",
+      "ornamentAdd": "Add decoration",
+      "ornAnchor": "Attached to",
+      "ornCorner": "Corner",
+      "ornAnimation": "Animation",
+      "ornX": "Horizontal offset",
+      "ornY": "Vertical offset",
+      "ornLayer": "Layer",
+      "ornWidth": "Width",
+      "ornHeight": "Height"
     },
     "labels": {
       "barBackground": "Action bar background",
@@ -151,6 +167,33 @@
       "imported": "Theme imported. Don't forget to save!",
       "importFailed": "The file could not be read as a theme.",
       "argonMissing": "Argon Combat HUD Themer: the module \"Argon - Combat HUD (CORE)\" is not active."
+    },
+    "anchor": {
+      "portrait": "Portrait",
+      "abilityMenu": "Abilities menu",
+      "buttonHud": "Rest buttons",
+      "weaponSets": "Quick slots",
+      "movement": "Movement tracker",
+      "actionFirst": "First action bar",
+      "actionLast": "Last action bar",
+      "hud": "Whole HUD"
+    },
+    "corner": {
+      "top-left": "top left",
+      "top-center": "top center",
+      "top-right": "top right",
+      "bottom-left": "bottom left",
+      "bottom-center": "bottom center",
+      "bottom-right": "bottom right"
+    },
+    "animation": {
+      "none": "none",
+      "flicker": "Flicker (light)",
+      "sway": "Sway (cloth)"
+    },
+    "layer": {
+      "front": "front",
+      "back": "back"
     }
   }
 }

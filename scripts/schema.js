@@ -168,6 +168,10 @@ export function defaultTheme() {
       glowSize: 12,
       textShadow: false,
       portraitFrame: false,  // farbiger Rahmen um das Portrait
+      skillIcons: false,     // Symbole vor Attributen & Fertigkeiten (Menü + Tooltip)
+      ornateMenu: false,     // verziertes Attribute-/Fertigkeitenmenü (Kopfleisten, Spaltenlinien)
+      squarePips: false,     // eckige Zauberplatz-Punkte
+      titleStrip: false,     // dunkler Verlauf hinter den Knopf-Beschriftungen
     },
     textures: {
       panel: "",           // Textur für Leisten & Kästen (kachelt)
@@ -180,8 +184,34 @@ export function defaultTheme() {
       buttonFrameSlice: 12,
       buttonFrameWidth: 6,
       seal: "",            // Deko-Bild oben rechts am Tooltip
+      headerOrnament: "",  // Zierelement in den Kopfleisten des Attribute-Menüs
     },
+    ornaments: [],         // frei platzierte Deko-Bilder (Laternen, Banner …)
     customCss: "",
+  };
+}
+
+export const MAX_ORNAMENTS = 16;
+export const ORNAMENT_ANCHORS = ["portrait", "abilityMenu", "buttonHud", "weaponSets", "movement", "actionFirst", "actionLast", "hud"];
+export const ORNAMENT_CORNERS = ["top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right"];
+export const ORNAMENT_ANIMATIONS = ["none", "flicker", "sway"];
+
+export function defaultOrnament() {
+  return { src: "", anchor: "portrait", corner: "top-right", x: 0, y: 0, width: 80, height: 80, layer: "front", animation: "none" };
+}
+
+export function normalizeOrnament(o = {}) {
+  const d = defaultOrnament();
+  return {
+    src: cleanPath(o.src),
+    anchor: ORNAMENT_ANCHORS.includes(o.anchor) ? o.anchor : d.anchor,
+    corner: ORNAMENT_CORNERS.includes(o.corner) ? o.corner : d.corner,
+    x: clampNumber(o.x, -1000, 1000, 0),
+    y: clampNumber(o.y, -1000, 1000, 0),
+    width: clampNumber(o.width, 4, 1000, d.width),
+    height: clampNumber(o.height, 4, 1000, d.height),
+    layer: o.layer === "back" ? "back" : "front",
+    animation: ORNAMENT_ANIMATIONS.includes(o.animation) ? o.animation : "none",
   };
 }
 
@@ -244,6 +274,7 @@ export function normalizeTheme(data = {}) {
     extras: {},
     style: { ...base.style },
     textures: { ...base.textures },
+    ornaments: [],
     customCss: typeof data.customCss === "string" ? data.customCss : "",
   };
 
@@ -266,6 +297,10 @@ export function normalizeTheme(data = {}) {
   theme.style.glowSize = clampNumber(s.glowSize, 0, 40, 12);
   theme.style.textShadow = !!s.textShadow;
   theme.style.portraitFrame = !!s.portraitFrame;
+  theme.style.skillIcons = !!s.skillIcons;
+  theme.style.ornateMenu = !!s.ornateMenu;
+  theme.style.squarePips = !!s.squarePips;
+  theme.style.titleStrip = !!s.titleStrip;
 
   const tx = data.textures ?? {};
   theme.textures = {
@@ -279,7 +314,11 @@ export function normalizeTheme(data = {}) {
     buttonFrameSlice: clampNumber(tx.buttonFrameSlice, 1, 500, base.textures.buttonFrameSlice),
     buttonFrameWidth: clampNumber(tx.buttonFrameWidth, 1, 32, base.textures.buttonFrameWidth),
     seal: cleanPath(tx.seal),
+    headerOrnament: cleanPath(tx.headerOrnament),
   };
+
+  const list = Array.isArray(data.ornaments) ? data.ornaments : Object.values(data.ornaments ?? {});
+  theme.ornaments = list.slice(0, MAX_ORNAMENTS).map(normalizeOrnament);
   return theme;
 }
 

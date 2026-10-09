@@ -3,6 +3,7 @@
  */
 import {
   MODULE_ID, ARGON_COLOR_GROUPS, EXTRA_COLOR_FIELDS, defaultTheme, normalizeTheme,
+  ORNAMENT_ANCHORS, ORNAMENT_CORNERS, ORNAMENT_ANIMATIONS, MAX_ORNAMENTS, defaultOrnament,
   splitHex8, joinHex8, toHex8,
 } from "./schema.js";
 import {
@@ -30,6 +31,7 @@ function getFontChoices() {
     if (choices) fonts = Object.keys(choices);
   } catch { /* ignorieren */ }
   if (!fonts.length) fonts = Object.keys(CONFIG.fontDefinitions ?? {});
+  fonts.push("Crimson Text"); // mitgelieferte Schrift
   return [...new Set(fonts)].sort((a, b) => a.localeCompare(b));
 }
 
@@ -65,6 +67,8 @@ export class ThemeEditor extends ApplicationV2 {
       revertTheme: ThemeEditor.#onRevert,
       activateTheme: ThemeEditor.#onActivate,
       browseFile: ThemeEditor.#onBrowse,
+      addOrnament: ThemeEditor.#onAddOrnament,
+      removeOrnament: ThemeEditor.#onRemoveOrnament,
     },
   };
 
@@ -97,7 +101,14 @@ export class ThemeEditor extends ApplicationV2 {
   }
 
   _replaceHTML(result, content) {
+    // Scrollposition und offene Abschnitte über das Neu-Zeichnen hinweg behalten
+    const scroll = content.querySelector(".act-scroll")?.scrollTop ?? 0;
+    const open = [...content.querySelectorAll(".act-scroll > details")].map((d) => d.open);
     content.innerHTML = result;
+    const details = content.querySelectorAll(".act-scroll > details");
+    if (open.length === details.length) details.forEach((d, i) => (d.open = open[i]));
+    const sc = content.querySelector(".act-scroll");
+    if (sc) sc.scrollTop = scroll;
   }
 
   _onFirstRender(context, options) {
@@ -172,6 +183,37 @@ export class ThemeEditor extends ApplicationV2 {
     return !!(t.panel || t.tooltip || t.frame || t.buttonFrame || t.seal);
   }
 
+  #ornamentRow(o, i) {
+    const p = `ornaments.${i}`;
+    const opt = (list, value, prefix) => list.map((v) =>
+      `<option value="${v}" ${v === value ? "selected" : ""}>${esc(L(`${prefix}.${v}`))}</option>`).join("");
+    const num = (key, label) =>
+      `<label>${esc(label)}<input type="number" data-path="${p}.${key}" value="${o[key]}" step="1"></label>`;
+    let thumb = "";
+    if (o.src) {
+      let href = o.src;
+      try { href = new URL(o.src, document.baseURI).href; } catch { /* unverändert */ }
+      thumb = `background-image:url('${esc(href)}')`;
+    }
+    return `
+      <div class="act-orn">
+        <div class="act-orn-src">
+          <span class="act-orn-thumb" style="${thumb}"></span>
+          <input type="text" data-path="${p}.src" value="${esc(o.src)}" placeholder="${esc(L("editor.texNone"))}" spellcheck="false">
+          <button type="button" data-action="browseFile" data-target="${p}.src" data-tooltip="${esc(L("editor.texBrowse"))}"><i class="fas fa-file-image"></i></button>
+          <button type="button" data-action="removeOrnament" data-index="${i}" data-tooltip="${esc(L("editor.delete"))}"><i class="fas fa-trash"></i></button>
+        </div>
+        <label>${L("editor.ornAnchor")}<select data-path="${p}.anchor">${opt(ORNAMENT_ANCHORS, o.anchor, "anchor")}</select></label>
+        <label>${L("editor.ornCorner")}<select data-path="${p}.corner">${opt(ORNAMENT_CORNERS, o.corner, "corner")}</select></label>
+        <label>${L("editor.ornAnimation")}<select data-path="${p}.animation">${opt(ORNAMENT_ANIMATIONS, o.animation, "animation")}</select></label>
+        ${num("x", L("editor.ornX"))}
+        ${num("y", L("editor.ornY"))}
+        <label>${L("editor.ornLayer")}<select data-path="${p}.layer">${opt(["front", "back"], o.layer, "layer")}</select></label>
+        ${num("width", L("editor.ornWidth"))}
+        ${num("height", L("editor.ornHeight"))}
+      </div>`;
+  }
+
   #pathRow(path, label, value) {
     return `
       <div class="act-field">
@@ -225,6 +267,10 @@ export class ThemeEditor extends ApplicationV2 {
           <div class="act-field"><label>${L("editor.radius")}</label>${range("style.radius", s.radius, 0, 40, 1, "px")}</div>
           <div class="act-field"><label>${L("editor.borderWidth")}</label>${range("style.borderWidth", s.borderWidth, 0, 8, 1, "px")}</div>
           <div class="act-field"><label>${L("editor.portraitFrame")}</label>${check("style.portraitFrame", s.portraitFrame)}</div>
+          <div class="act-field"><label>${L("editor.skillIcons")}</label>${check("style.skillIcons", s.skillIcons)}</div>
+          <div class="act-field"><label>${L("editor.ornateMenu")}</label>${check("style.ornateMenu", s.ornateMenu)}</div>
+          <div class="act-field"><label>${L("editor.titleStrip")}</label>${check("style.titleStrip", s.titleStrip)}</div>
+          <div class="act-field"><label>${L("editor.squarePips")}</label>${check("style.squarePips", s.squarePips)}</div>
           <div class="act-field"><label>${L("editor.textShadow")}</label>${check("style.textShadow", s.textShadow)}</div>
           <div class="act-field"><label>${L("editor.hoverGlow")}</label>${check("style.hoverGlow", s.hoverGlow)}</div>
           <div class="act-field"><label>${L("editor.glowSize")}</label>${range("style.glowSize", s.glowSize, 0, 40, 1, "px")}</div>
@@ -250,6 +296,14 @@ export class ThemeEditor extends ApplicationV2 {
           <div class="act-field"><label>${L("editor.texSlice")}</label>${range("textures.buttonFrameSlice", tx.buttonFrameSlice, 1, 200, 1, "")}</div>
           <div class="act-field"><label>${L("editor.texWidth")}</label>${range("textures.buttonFrameWidth", tx.buttonFrameWidth, 1, 24, 1, "px")}</div>
           ${this.#pathRow("textures.seal", L("editor.texSeal"), tx.seal)}
+          ${this.#pathRow("textures.headerOrnament", L("editor.texHeaderOrnament"), tx.headerOrnament)}
+        </details>
+
+        <details class="act-group" ${t.ornaments.length ? "open" : ""}>
+          <summary>${L("editor.sectionOrnaments")} <span class="act-mini">${t.ornaments.length}</span></summary>
+          <p class="hint">${L("editor.ornamentsHint")}</p>
+          ${t.ornaments.map((o, i) => this.#ornamentRow(o, i)).join("")}
+          <button type="button" class="act-orn-add" data-action="addOrnament" ${t.ornaments.length >= MAX_ORNAMENTS ? "disabled" : ""}><i class="fas fa-plus"></i> ${L("editor.ornamentAdd")}</button>
         </details>
 
         <h4 class="act-subhead">${L("editor.sectionArgon")}</h4>
@@ -407,10 +461,14 @@ export class ThemeEditor extends ApplicationV2 {
       value = Number(el.value);
       const out = el.parentElement.querySelector(".act-range-val");
       if (out) out.textContent = `${value}${out.dataset.unit ?? ""}`;
+    } else if (el.type === "number") {
+      value = Number(el.value);
+      if (!Number.isFinite(value)) return;
     } else value = el.value;
 
     // Name und eigenes CSS nur beim Verlassen des Feldes übernehmen (flüssigeres Tippen)
-    const commitOnly = path === "customCss" || path === "name" || (path.startsWith("textures.") && el.type === "text");
+    const isPath = (path.startsWith("textures.") || path.startsWith("ornaments.")) && el.type === "text";
+    const commitOnly = path === "customCss" || path === "name" || isPath;
     if (commitOnly && !committed) {
       foundry.utils.setProperty(this.working, path, value);
       this.#markDirty();
@@ -424,6 +482,7 @@ export class ThemeEditor extends ApplicationV2 {
     this.#markDirty();
     this.#updatePreviewBox();
     setPreview(this.working);
+    if (/^ornaments\.\d+\.src$/.test(path)) this.render(); // Vorschaubild aktualisieren
   }
 
   #markDirty() {
@@ -547,6 +606,21 @@ export class ThemeEditor extends ApplicationV2 {
     }
     await setWorldTheme(id);
     ui.notifications.info(L("notify.activated", { name: getTheme(id)?.name ?? "" }));
+    this.render();
+  }
+
+  static #onAddOrnament() {
+    if (this.working.ornaments.length >= MAX_ORNAMENTS) return;
+    this.working.ornaments.push(defaultOrnament());
+    this.#markDirty();
+    this.render();
+  }
+
+  static #onRemoveOrnament(event, target) {
+    const i = Number(target.dataset.index);
+    this.working.ornaments.splice(i, 1);
+    this.#markDirty();
+    setPreview(this.working);
     this.render();
   }
 

@@ -4,6 +4,7 @@
 import { MODULE_ID, normalizeTheme } from "./schema.js";
 import { BUILTIN_THEMES } from "./presets.js";
 import { applyTheme } from "./apply.js";
+import { setDecorTheme } from "./decor.js";
 
 export const NONE = "none";
 export const WORLD = "world";
@@ -192,8 +193,9 @@ export function resolveActiveThemeId() {
 }
 
 export function applyCurrentTheme() {
-  if (previewTheme) return applyTheme(previewTheme);
-  applyTheme(getTheme(resolveActiveThemeId()));
+  const theme = previewTheme ?? getTheme(resolveActiveThemeId());
+  applyTheme(theme);
+  setDecorTheme(theme);
 }
 
 export function setPreview(theme) {

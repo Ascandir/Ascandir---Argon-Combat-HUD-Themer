@@ -9,9 +9,11 @@ import {
 } from "./store.js";
 import { ThemeEditor } from "./editor.js";
 import { buildThemeCss } from "./apply.js";
+import { registerDecorHooks } from "./decor.js";
 
 Hooks.once("init", () => {
   registerSettings(ThemeEditor);
+  registerDecorHooks();
 });
 
 Hooks.once("setup", () => {

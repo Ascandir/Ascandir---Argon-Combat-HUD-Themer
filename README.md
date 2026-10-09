@@ -6,6 +6,8 @@ Eigene Themes/Skins für das **Argon Combat HUD** in Foundry VTT erstellen, spei
 - **Editor mit Live-Vorschau:** Mini-Vorschau im Fenster, zusätzlich zeigt das echte HUD die Änderungen sofort (nur bei dir, bis du speicherst)
 - **Alle Argon-Farben** inkl. Transparenz, dazu Farben, die Argon fest eingebaut hat (RK/SG-Werte, Trefferpunkte, Aktions-Punkte, Zauberplätze, Werte-Kästen)
 - **Schrift, Form & Effekte:** Schriftart, Schriftgröße, Eckenrundung, Rahmenstärke, Leuchten beim Darüberfahren, Textschatten, Portrait-Rahmen
+- **Deko-Elemente:** frei platzierbare Bilder wie Laternen (mit Flackern), Banner (mit Schwingen) oder Wappen – verankert an Portrait, Menü, Rast-Knöpfen oder Aktionsleisten
+- **Symbole vor Attributen & Fertigkeiten** (im Menü und im Tooltip), verziertes Attribute-Menü, eckige Zauberplatz-Punkte, Titelstreifen auf den Knöpfen
 - **Texturen & Rahmenbilder:** Holz-/Leder-Textur für Leisten, Pergament für Tooltips, Zierrahmen als 9-Slice-Bild, Deko wie ein Wachssiegel – mit eigenen Bildern aus deinen Foundry-Dateien
 - **Auswahl über die Spieleinstellungen:** Theme für alle (Welt) vom SL; optional dürfen Spieler ein eigenes wählen
 - Mitgelieferte Vorlagen: *Schmiede & Pergament*, *Drachenblut*, *Pergament & Tinte*, *Arkane Nacht*, *Waldläufer*, *Eisen & Glut*
@@ -32,6 +34,10 @@ Benötigt: **Argon - Combat HUD (CORE)** (ab 5.0). Getestet mit Foundry v14.368,
 ## Eigene Rahmenbilder
 
 Rahmen werden als **9-Slice** gestreckt: Die vier Ecken des Bildes bleiben unverzerrt, die Kanten werden gestreckt, die Mitte bleibt leer. „Ecken-Größe im Bild“ ist die Kantenlänge einer Ecke in Pixeln im Originalbild, „Rahmenbreite“ die angezeigte Breite im HUD.
+
+## Schrift
+
+Mitgeliefert ist die Schrift **Crimson Text** (SIL Open Font License, siehe `assets/fonts`).
 
 ## Für Makros
 

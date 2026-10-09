@@ -36,6 +36,8 @@ ${HUD} .portrait-hud .portrait-stat-block [data-spell-dc]:after,
 ${HUD} .portrait-hud .portrait-stat-block span[style*="movement-baseMovement-background"],
 ${HUD} .movement-hud .movement-current { color: ${extras.accent} !important; }
 ${HUD} .portrait-hud .portrait-stat-block span[style*="rgb(0, 255, 170)"] { color: ${extras.hp} !important; }
+${HUD} .portrait-hud .portrait-stat-block span[style*="rgb(255, 255, 255)"] { color: ${extras.statText} !important; }
+${HUD} .portrait-hud .portrait-stat-block span[style*="rgb(255, 255, 255)"] { color: ${extras.statText} !important; }
 
 ${HUD} .actions-container.has-actions:after,
 ${HUD} .actions-container .action-pip,
@@ -74,7 +76,10 @@ ${HUD} .feature-accordion-title,
 ${HUD} .portrait-stat-block,
 ${HUD} .player-button,
 ${HUD} .movement-hud,
-${HUD} .actions-container:before { font-size: calc(1em * ${f}) !important; }`);
+${HUD} .actions-container:before { font-size: calc(1em * ${f}) !important; }
+${HUD} .ability-menu ul { font-size: calc(1rem * ${f}) !important; }
+${HUD} .portrait-hud .player-details .player-name { font-size: calc(1.15em * ${f}) !important; font-weight: 700; }
+.ech-tooltip { font-size: calc(16px * ${f}) !important; }`);
   }
 
   // 4) Form: Ecken & Rahmen
@@ -87,7 +92,6 @@ ${HUD} .feature-accordion-title,
 ${HUD} .feature-spell-slots,
 ${HUD} .actions-container:before,
 ${HUD} .weapon-sets .weapon-set,
-${HUD} .weapon-sets .weapon-set:before,
 ${HUD} .portrait-hud .player-button,
 ${HUD} .portrait-hud .player-button:before,
 ${HUD} .portrait-hud .portrait-stat-block:not(.player-details),
@@ -141,7 +145,13 @@ ${HUD} .actions-container:before { text-shadow: 0 0 4px #000000, 0 1px 2px #0000
   // 6) Texturen & Rahmenbilder
   out.push(buildTextureCss(theme));
 
-  // 7) Eigenes CSS
+  // 7) Layout-Ausgleich für dickere Rahmen
+  out.push(buildLayoutFixCss(theme));
+
+  // 8) Zusatz-Funktionen (Icons, Menü, Punkte, Titelstreifen)
+  out.push(buildFeatureCss(theme));
+
+  // 9) Eigenes CSS
   if (theme.customCss?.trim()) out.push(`/* Eigenes CSS */\n${safeCss(theme.customCss)}`);
 
   return `/* ${MODULE_ID}: ${String(theme.name).replace(/\*\//g, "")} */\n${out.join("\n")}`;
@@ -228,6 +238,101 @@ ${HUD} .portrait-hud .portrait-stat-block:not(.player-details) {
   pointer-events: none;
   z-index: 10001;
   filter: drop-shadow(0 2px 3px #000000aa);
+}`);
+  }
+  return out.join("\n");
+}
+
+/**
+ * Dickere Rahmen verkleinern die Innenfläche. Was Argon von dort aus nach außen
+ * positioniert (Initiative-/Bogen-/Minimieren-Knöpfe) oder was mit fester Größe
+ * gebaut ist (Quickslots), wird hier um die Mehrbreite zurückgeschoben.
+ */
+function buildLayoutFixCss({ textures: t, style }) {
+  const out = [];
+  const portraitBorder = t.frame ? t.frameWidth : style.portraitFrame ? Math.max(1, style.borderWidth) : 1;
+  const extraP = portraitBorder - 1;
+  if (extraP > 0) {
+    out.push(`
+${HUD} .portrait-hud .player-buttons {
+  right: calc(-115px - ${extraP}px) !important;
+  top: calc(-50px - 1rem - 37px - ${extraP}px) !important;
+}
+${HUD} .portrait-hud .portrait-actor-configuration { top: ${extraP}px !important; right: ${extraP}px !important; }`);
+  }
+  const setBorder = t.buttonFrame ? t.buttonFrameWidth : style.borderWidth;
+  const extraS = Math.max(0, setBorder - 1) * 2;
+  if (extraS > 0) {
+    out.push(`
+${HUD} .weapon-sets .weapon-set > .set {
+  height: calc(50px - ${extraS}px) !important;
+  min-width: calc(50px - ${extraS}px) !important;
+}`);
+  }
+  return out.join("\n");
+}
+
+function buildFeatureCss({ style: s, textures: t, extras: x, colors: c }) {
+  const out = [];
+  if (s.titleStrip) {
+    out.push(`
+${HUD} .action-element .action-element-title,
+${HUD} .feature-element .feature-element-title {
+  background: linear-gradient(to bottom, transparent 0%, #000000b3 45%, #000000e6 100%) !important;
+  backdrop-filter: none !important;
+  border-top: none !important;
+  color: ${c["mainAction-base-color"]} !important;
+}`);
+  }
+  if (s.squarePips) {
+    out.push(`
+${HUD} .feature-spell-slots .spell-slot:not(.spell-cantrip) { border-radius: 3px !important; }
+${HUD} .actions-container .action-pip { border-radius: 2px !important; }`);
+  }
+  if (s.ornateMenu) {
+    out.push(`
+${HUD} .ability-menu ul > li { border-top: 1px solid #00000099 !important; box-shadow: inset 0 1px 0 #ffffff0d; }
+${HUD} .ability-menu ul > li.ability-title,
+${HUD} .ability-menu ul.ability-toggle li {
+  background: linear-gradient(to bottom, #ffffff12, #00000040) !important;
+  letter-spacing: 0.06em;
+  border-bottom: 2px solid ${c["abilityMenu-border"]} !important;
+}
+${HUD} .ability-menu ul > li:not(.ability-title) > span:not(:first-child),
+${HUD} .ability-menu ul > li:not(.ability-title) > div > span {
+  border-left: 1px solid #00000099;
+  box-shadow: -1px 0 0 #ffffff0f;
+}
+${HUD} .ability-menu ul > li i.fa-check,
+${HUD} .ability-menu ul > li i.fa-check-double,
+${HUD} .ability-menu ul > li i.fa-adjust { color: ${x.accent} !important; }`);
+    if (t.headerOrnament) {
+      out.push(`
+${HUD} .ability-menu ul.collapsible-panel > li.ability-title > span:first-child::after {
+  content: "";
+  display: inline-block;
+  width: 2.6em;
+  height: 1.1em;
+  margin-left: 0.6em;
+  vertical-align: middle;
+  background: ${cssUrl(t.headerOrnament)} center / contain no-repeat;
+}`);
+    }
+  }
+  if (s.skillIcons) {
+    out.push(`
+${HUD} .ability-menu .asc-skill-icon {
+  display: inline-block;
+  width: 1.5em;
+  margin-right: 0.5ch;
+  text-align: center;
+  color: inherit;
+  opacity: 0.85;
+  pointer-events: none;
+}
+.ech-tooltip .ech-tooltip-header .asc-skill-icon {
+  margin-right: 0.5ch;
+  color: ${c["tooltip-header-color"]};
 }`);
   }
   return out.join("\n");

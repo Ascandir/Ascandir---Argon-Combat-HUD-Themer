@@ -99,7 +99,23 @@
       "texWidth": "↳ Rahmenbreite",
       "texSeal": "Deko am Tooltip (z. B. Siegel)",
       "texNone": "kein Bild",
-      "texBrowse": "Datei auswählen"
+      "texBrowse": "Datei auswählen",
+      "skillIcons": "Symbole vor Attributen & Fertigkeiten",
+      "ornateMenu": "Verziertes Attribute-Menü (Kopfleisten, Spalten)",
+      "titleStrip": "Dunkler Streifen hinter Knopf-Beschriftungen",
+      "squarePips": "Eckige Zauberplatz-Punkte",
+      "texHeaderOrnament": "Zier in den Menü-Kopfleisten",
+      "sectionOrnaments": "Deko-Elemente (Laternen, Banner, Wappen …)",
+      "ornamentsHint": "Frei platzierte Bilder, die am HUD hängen. Sie sind nur am echten HUD sichtbar, nicht in der Mini-Vorschau. Abstände und Größen in HUD-Pixeln (werden mit Argons Skalierung mitgeskaliert); negative Werte ragen über den Rand hinaus.",
+      "ornamentAdd": "Deko hinzufügen",
+      "ornAnchor": "Hängt an",
+      "ornCorner": "Ecke",
+      "ornAnimation": "Animation",
+      "ornX": "Abstand waagrecht",
+      "ornY": "Abstand senkrecht",
+      "ornLayer": "Ebene",
+      "ornWidth": "Breite",
+      "ornHeight": "Höhe"
     },
     "labels": {
       "barBackground": "Hintergrund der Aktionsleisten",
@@ -151,6 +167,33 @@
       "imported": "Theme importiert. Speichern nicht vergessen!",
       "importFailed": "Die Datei konnte nicht als Theme gelesen werden.",
       "argonMissing": "Argon Combat HUD Themer: Das Modul „Argon - Combat HUD (CORE)“ ist nicht aktiv."
+    },
+    "anchor": {
+      "portrait": "Portrait",
+      "abilityMenu": "Attribute-Menü",
+      "buttonHud": "Rast-Knöpfe",
+      "weaponSets": "Quickslots",
+      "movement": "Bewegungsanzeige",
+      "actionFirst": "Erste Aktionsleiste",
+      "actionLast": "Letzte Aktionsleiste",
+      "hud": "Ganzes HUD"
+    },
+    "corner": {
+      "top-left": "oben links",
+      "top-center": "oben Mitte",
+      "top-right": "oben rechts",
+      "bottom-left": "unten links",
+      "bottom-center": "unten Mitte",
+      "bottom-right": "unten rechts"
+    },
+    "animation": {
+      "none": "keine",
+      "flicker": "Flackern (Licht)",
+      "sway": "Schwingen (Stoff)"
+    },
+    "layer": {
+      "front": "vorne",
+      "back": "hinten"
     }
   }
 }

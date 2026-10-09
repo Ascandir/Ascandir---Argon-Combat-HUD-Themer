@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="160" viewBox="0 0 80 160">
+  <defs>
+    <linearGradient id="iron" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1a1410"/>
+      <stop offset="0.45" stop-color="#5a4632"/>
+      <stop offset="1" stop-color="#1a1410"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e2b46a"/>
+      <stop offset="0.5" stop-color="#8a5c2a"/>
+      <stop offset="1" stop-color="#4e3217"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.6" r="0.6">
+      <stop offset="0" stop-color="#fff2b0"/>
+      <stop offset="0.35" stop-color="#ffb84a"/>
+      <stop offset="0.75" stop-color="#c2521a" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#5a1e08" stop-opacity="0.6"/>
+    </radialGradient>
+    <radialGradient id="flame" cx="0.5" cy="0.75" r="0.6">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.4" stop-color="#ffe27a"/>
+      <stop offset="1" stop-color="#ff8a1a" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      .fl { transform-origin: 40px 104px; animation: f 1.4s ease-in-out infinite alternate; }
+      @keyframes f { 0% { transform: scale(1, 1) } 40% { transform: scale(0.92, 1.08) } 100% { transform: scale(1.05, 0.94) } }
+    </style>
+  </defs>
+  <!-- Aufhängung -->
+  <circle cx="40" cy="7" r="5" fill="none" stroke="url(#brass)" stroke-width="2.5"/>
+  <path d="M40 12 V20" stroke="#3a2a1a" stroke-width="3"/>
+  <!-- Dach -->
+  <path d="M20 34 L40 18 L60 34 Z" fill="url(#iron)" stroke="#0d0905" stroke-width="1.5"/>
+  <rect x="16" y="33" width="48" height="7" rx="1.5" fill="url(#brass)" stroke="#0d0905" stroke-width="1.2"/>
+  <!-- Glas -->
+  <path d="M21 40 H59 L56 118 H24 Z" fill="url(#glow)" stroke="#0d0905" stroke-width="1.2"/>
+  <ellipse class="fl" cx="40" cy="92" rx="8" ry="18" fill="url(#flame)"/>
+  <rect x="38.5" y="104" width="3" height="10" fill="#e8dcc4"/>
+  <!-- Gitterstreben -->
+  <path d="M21 40 L24 118 M59 40 L56 118 M40 40 V118" stroke="url(#iron)" stroke-width="3.2"/>
+  <path d="M22 66 H58 M23 92 H57" stroke="#2a1e14" stroke-width="2" opacity="0.85"/>
+  <!-- Boden -->
+  <rect x="17" y="117" width="46" height="8" rx="1.5" fill="url(#brass)" stroke="#0d0905" stroke-width="1.2"/>
+  <path d="M24 125 H56 L50 136 H30 Z" fill="url(#iron)" stroke="#0d0905" stroke-width="1.2"/>
+  <circle cx="40" cy="140" r="4" fill="url(#brass)" stroke="#0d0905" stroke-width="1"/>
+</svg>

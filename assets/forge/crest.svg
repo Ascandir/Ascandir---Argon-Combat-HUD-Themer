@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="90" height="130" viewBox="0 0 90 130">
+  <defs>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2e4a78"/>
+      <stop offset="0.5" stop-color="#1a2c4e"/>
+      <stop offset="1" stop-color="#0c1528"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2cf7e"/>
+      <stop offset="0.5" stop-color="#b8843f"/>
+      <stop offset="1" stop-color="#6e4a1e"/>
+    </linearGradient>
+  </defs>
+  <path d="M6 4 H84 V96 L45 126 L6 96 Z" fill="url(#gold)" stroke="#120a04" stroke-width="1.5"/>
+  <path d="M11 9 H79 V93 L45 119 L11 93 Z" fill="url(#blue)" stroke="#0a0f1c" stroke-width="1"/>
+  <path d="M15 13 H75 V91 L45 114 L15 91 Z" fill="none" stroke="#b8843f" stroke-width="1" opacity="0.7"/>
+  <!-- Zahnrad-Kreuz (Artificer) -->
+  <g transform="translate(45 58)" fill="url(#gold)" stroke="#2a1806" stroke-width="0.8">
+    <path d="M-4 -40 H4 V-14 H30 V-6 H4 V30 H-4 V-6 H-30 V-14 H-4 Z"/>
+    <circle cx="0" cy="-10" r="11" fill="none" stroke="url(#gold)" stroke-width="5"/>
+    <circle cx="0" cy="-10" r="4" fill="#2e4a78" stroke="url(#gold)" stroke-width="1.5"/>
+    <path d="M-6 30 L0 40 L6 30 Z"/>
+  </g>
+</svg>
